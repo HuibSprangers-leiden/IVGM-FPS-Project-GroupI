@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using Unity.FPS;
 
+//namespace Unity.FPS.Gameplay
+//{
 public class Health : MonoBehaviour
 {
     [Tooltip("Maximum amount of health")]
@@ -11,6 +14,11 @@ public class Health : MonoBehaviour
     public UnityAction<float, GameObject> onDamaged;
     public UnityAction<float> onHealed;
     public UnityAction onDie;
+    public bool isImmortal = false;
+    public float playerLives = 3f;
+
+    private Transform player;
+    private Transform destination;
 
     public float currentHealth { get; set; }
     public bool invincible { get; set; }
@@ -24,6 +32,10 @@ public class Health : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        if (GameObject.Find("Player"))
+            player = GameObject.Find("Player").transform;
+        if (GameObject.Find("StartSpawn"))
+            destination = GameObject.Find("StartSpawn").transform;
     }
 
     public void Heal(float healAmount)
@@ -59,6 +71,17 @@ public class Health : MonoBehaviour
         HandleDeath();
     }
 
+    public bool TryUnlock(Transform spawn)
+   {
+        destination = spawn;
+        //if (isImmortal)
+        //    return false;
+
+        //onUnlockSwim.Invoke(true);
+        //isImmortal = true;
+        return true;
+    }
+    
     public void Kill()
     {
         currentHealth = 0f;
@@ -74,19 +97,37 @@ public class Health : MonoBehaviour
 
     private void HandleDeath()
     {
-        if (m_IsDead)
+        if (m_IsDead){
             return;
+        }
 
         // call OnDie action
         if (currentHealth <= 0f)
         {
-        	
-            if (onDie != null)
+        	if (!isImmortal)
             {
-                m_IsDead = true;
-                onDie.Invoke();
+                if (onDie != null)
+                {
+                    m_IsDead = true;
+                    onDie.Invoke();
+                }
             }
-            
+            else if (playerLives != 0f)
+            {
+                player.transform.position = destination.transform.position;
+                playerLives = playerLives -1f;
+                Heal(100f);
+            }
+            else 
+            {
+                isImmortal = false;
+                if (onDie != null)
+                {
+                    m_IsDead = true;
+                    onDie.Invoke();
+                }
+            }
         }
     }
+//    }
 }
