@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Unity.FPS.Gameplay
 {
         [RequireComponent(typeof(Collider))]
-    public class Teleport : MonoBehaviour
+    public class Teleportation : MonoBehaviour
     {
                 [Tooltip("Visible transform that will be destroyed once the objective is completed")]
         public Transform Destination;
