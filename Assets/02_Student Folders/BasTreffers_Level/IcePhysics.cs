@@ -47,13 +47,13 @@ public class IcePhysics : MonoBehaviour
 
         Vector3 worldspaceMoveInput = transform.TransformVector(m_InputHandler.GetMoveInput());
 
-        prevSpeed = prevSpeed * 0.71f;
+        prevSpeed = prevSpeed * 0.85f;
         float maxSpeedOnGround = m_PlayerCharacterController.maxSpeedOnGround;
         if (m_PlayerCharacterController.isGrounded)
         {
             if (slippy)
             {
-                jumpMod = 20.0f;
+                jumpMod = 15.0f;
                 float iceSpeed = 1.2f;
                 // calculate the desired velocity from inputs, max speed, and current slope
                 if (prevSpeed.x > maxSpeedOnGround * iceSpeed)
@@ -72,7 +72,7 @@ public class IcePhysics : MonoBehaviour
                 {
                     prevSpeed.z = -maxSpeedOnGround * iceSpeed;
                 }
-                m_PlayerCharacterController.characterVelocity = m_PlayerCharacterController.characterVelocity * 0.6f + prevSpeed * 0.6f;
+                m_PlayerCharacterController.characterVelocity = m_PlayerCharacterController.characterVelocity * 0.5f + prevSpeed * 0.6f;
                 prevSpeed = m_PlayerCharacterController.characterVelocity;
             }
             else
@@ -84,7 +84,7 @@ public class IcePhysics : MonoBehaviour
         }
         else
         {
-            jumpMod = jumpMod * 0.98f;
+            jumpMod = jumpMod * 0.97f;
         }
     }
 }
