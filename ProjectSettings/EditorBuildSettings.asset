@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/02_Student Folders/LuukvanBeusichem_Assets/LuukvanBeusichem_Scene.unity
     guid: 69885098345d76a4d82d61d000753361
   - enabled: 1
-    path: Assets/02_Student Folders/HuibSprangers_Assets/Scenes/HSScene.unity
+    path: Assets/02_Student Folders/HuibSprangers_Assets/Scenes/HuibSprangers_Scene.unity
     guid: d794a2ef8ba31d847ad3c19d03e2ddb9
   - enabled: 1
     path: Assets/02_StudentFolders/RobinKruijf_Assets/RobinKruijf_Scene.unity
