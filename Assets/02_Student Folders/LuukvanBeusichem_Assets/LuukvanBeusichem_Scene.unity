@@ -6635,6 +6635,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 598277302063295028, guid: 01ef6790007a93f4b94b4287129aee19,
+        type: 3}
+      propertyPath: title
+      value: Eliminate all the enemies
+      objectReference: {fileID: 0}
     - target: {fileID: 598277302063295029, guid: 01ef6790007a93f4b94b4287129aee19,
         type: 3}
       propertyPath: m_RootOrder
